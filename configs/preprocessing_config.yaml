@@ -1,0 +1,14 @@
+augmentation:
+  enabled: true
+  num_augmentations: 3
+datasets:
+  au_air: .\datasets\AU-AIR
+  flir_adas: .\datasets\FLIR_ADAS_v2
+  rsicd: .\datasets\RSICD
+  ucas_aod: .\datasets\UCAS-AOD
+  xview: .\datasets\xView
+output:
+  base_dir: ./processed_large_target_dataset
+quality_control:
+  max_aspect_ratio: 10
+  min_bbox_size: 20

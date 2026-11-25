@@ -1,0 +1,42 @@
+# configs/train_config.yaml
+# 训练配置文件
+base_dir: "./training_output"
+
+data:
+  path: "./processed_large_target_dataset"
+  train_annotations: "annotations/coco/train.json"
+  val_annotations: "annotations/coco/val.json"
+  text_descriptions: "text_descriptions/descriptions.json"
+  class_names:
+    - "airport"
+    - "oil_field"
+    - "port"
+    - "runway"
+    - "oil_tank"
+    - "dock"
+    - "bus"
+    - "truck"
+    - "cargo_truck"
+  input_size: [1024, 1024]
+
+model:
+  backbone: "resnet50"
+  text_encoder: "openai/clip-vit-base-patch32"
+  num_classes: 9  # 类别数量
+  num_queries: 100
+  hidden_dim: 256
+
+training:
+  epochs: 100
+  batch_size: 8
+  lr: 0.0001
+  weight_decay: 0.0001
+  lr_step: 30
+  lr_gamma: 0.1
+  grad_clip: 1.0
+  num_workers: 4
+  device: "cuda"
+  eval_interval: 1  # 每隔1个epoch评估一次
+  save_interval: 5  # 每隔5个epoch保存一次检查点
+  loss_alpha: 1.0    # 检测损失权重
+  loss_beta: 0.5     # 对齐损失权重
